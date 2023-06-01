@@ -13,6 +13,8 @@
 		7B98110E2A2738810082CD3B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B98110D2A2738810082CD3B /* Extensions.swift */; };
 		7B9811102A275FCE0082CD3B /* TopRatedFreelancerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B98110F2A275FCE0082CD3B /* TopRatedFreelancerCell.swift */; };
 		7B9811122A2760780082CD3B /* MarketPlaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9811112A2760780082CD3B /* MarketPlaceCell.swift */; };
+		7B98111F2A2859C30082CD3B /* Outfit-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7B9811132A2762FF0082CD3B /* Outfit-Regular.ttf */; };
+		7B9811202A285A9F0082CD3B /* Outfit-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7B98111B2A2762FF0082CD3B /* Outfit-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +68,7 @@
 		7B9810F82A24BB490082CD3B /* HomePageCompositionalLayout */ = {
 			isa = PBXGroup;
 			children = (
+				7B98111E2A2763120082CD3B /* Fonts */,
 				7B98111D2A2763040082CD3B /* Resources */,
 				7B9810F92A24BB490082CD3B /* AppDelegate.swift */,
 				7B9810FD2A24BB490082CD3B /* ViewController.swift */,
@@ -81,7 +84,6 @@
 		7B98111D2A2763040082CD3B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				7B98111E2A2763120082CD3B /* Fonts */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -161,7 +163,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B98111F2A2859C30082CD3B /* Outfit-Regular.ttf in Resources */,
 				7B9811032A24BB4A0082CD3B /* Assets.xcassets in Resources */,
+				7B9811202A285A9F0082CD3B /* Outfit-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

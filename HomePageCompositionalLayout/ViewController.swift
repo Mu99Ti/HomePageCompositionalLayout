@@ -38,6 +38,7 @@ class ViewController: UIViewController {
     }
     
     private func makeLayout() -> UICollectionViewCompositionalLayout{
+        
         let configuration = UICollectionViewCompositionalLayoutConfiguration()
         configuration.interSectionSpacing = 72
         
@@ -53,14 +54,16 @@ class ViewController: UIViewController {
                 section.interGroupSpacing = 12
                 section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20)
                 section.orthogonalScrollingBehavior = .continuous
+                
             } else if sectionIndex == 1 {
-                let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(355), heightDimension: .absolute(208))
+                let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(317), heightDimension: .absolute(160))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: itemSize, subitems: [item])
                 section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = 12
                 section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20)
                 section.orthogonalScrollingBehavior = .continuous
+                
             } else {
                 let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(252), heightDimension: .absolute(245))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -70,23 +73,29 @@ class ViewController: UIViewController {
                 section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20)
                 section.orthogonalScrollingBehavior = .continuous
             }
+            
             return section
         }
         
         let layout = UICollectionViewCompositionalLayout(sectionProvider: sectionProvider, configuration: configuration)
+        
         return layout
     }
 }
 
 extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let sectionNumber = indexPath.section
+        
         if sectionNumber == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MarketPlaceCell.reuseIdentifier, for: indexPath)
             return cell
+            
         } else if sectionNumber == 1 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopRatedFreelancerCell.reuseIdentifier, for: indexPath)
             return cell
+            
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
             cell.backgroundColor = .red

@@ -28,7 +28,7 @@ class TopRatedFreelancerCell: UICollectionViewCell {
     private lazy var completedLabel: UILabel = {
         let label = UILabel()
         label.text = "testtsttsts"
-        label.font = UIFont(name: "Outfit-SemiBold", size: 12)
+        label.font = UIFont(name: "Outfit Regular", size: 12)
         return label
     }()
     
@@ -36,7 +36,8 @@ class TopRatedFreelancerCell: UICollectionViewCell {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.distribution = .fillProportionally
+        stackView.spacing = 4
+        stackView.distribution = .fillEqually
         return stackView
     }()
     
@@ -59,7 +60,7 @@ class TopRatedFreelancerCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "testtsttsts"
         label.textAlignment = .right
-        label.font = UIFont(name: "Outfit-SemiBold", size: 12)
+        label.font = UIFont(name: "Outfit Regular", size: 12)
         return label
     }()
     
@@ -83,12 +84,13 @@ class TopRatedFreelancerCell: UICollectionViewCell {
     private lazy var packagesLabel: UILabel = {
         let label = UILabel()
         label.text = "testtsttsts"
+        label.font = UIFont(name: "Outfit Regular", size: 12)
         return label
     }()
     
     private lazy var packagesStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.distribution = .fillProportionally
+        stackView.distribution = .equalCentering
         stackView.axis = .horizontal
         stackView.spacing = 6.5
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -105,14 +107,14 @@ class TopRatedFreelancerCell: UICollectionViewCell {
     private lazy var servicesLabel: UILabel = {
         let label = UILabel()
         label.text = "testtsttsts"
+        label.font = UIFont(name: "Outfit Regular", size: 12)
         label.textAlignment = .right
         return label
     }()
     
     private lazy var servicesStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.distribution = .equalSpacing
-        stackView.axis = .horizontal
+        stackView.distribution = .equalCentering
         stackView.alignment = .trailing
         stackView.spacing = 6.5
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -131,6 +133,7 @@ class TopRatedFreelancerCell: UICollectionViewCell {
         let label = UILabel()
         label.numberOfLines = 2
         label.text = "fjdsfnsdklnflksdnflksndflknsldkfsdlknfdsfnsdklnflksdnflksndflknsldkfsdlknfdsfnsdklnflksdnflksndflknsldkfsdlknf"
+        label.font = UIFont(name: "Outfit Regular", size: 12)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -138,7 +141,7 @@ class TopRatedFreelancerCell: UICollectionViewCell {
     private lazy var labelHolderStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.distribution = .fillEqually
+        stackView.distribution = .fillProportionally
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.spacing = 9
         return stackView
@@ -147,7 +150,7 @@ class TopRatedFreelancerCell: UICollectionViewCell {
     private lazy var mainStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.distribution = .fillProportionally
+        stackView.distribution = .equalSpacing
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.spacing = 17
         return stackView
@@ -205,9 +208,15 @@ class TopRatedFreelancerCell: UICollectionViewCell {
         ])
         
         NSLayoutConstraint.activate([
-            freelancerCellHeaderStackView.heightAnchor.constraint(equalToConstant: 48),
-            freelancerCellHeaderStackView.widthAnchor.constraint(equalToConstant: 285)
+            freelancerCellHeaderStackView.widthAnchor.constraint(equalToConstant: 285),
+            freelancerCellHeaderStackView.heightAnchor.constraint(equalToConstant: 48)
         ])
+        
+        NSLayoutConstraint.activate([
+            labelHolderStackView.widthAnchor.constraint(equalToConstant: 285),
+            labelHolderStackView.heightAnchor.constraint(equalToConstant: 64)
+        ])
+
         
         NSLayoutConstraint.activate([
             mainStackView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 16),
