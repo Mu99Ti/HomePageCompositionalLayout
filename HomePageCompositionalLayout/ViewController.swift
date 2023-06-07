@@ -17,7 +17,7 @@ class ViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.register(MarketPlaceCell.self, forCellWithReuseIdentifier: MarketPlaceCell.reuseIdentifier)
         collectionView.register(TopRatedFreelancerCell.self, forCellWithReuseIdentifier: TopRatedFreelancerCell.reuseIdentifier)
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.register(BestPackagesCell.self, forCellWithReuseIdentifier: BestPackagesCell.reuseIdentifier)
         collectionView.backgroundColor = .systemBackground
         return collectionView
     }()
@@ -97,8 +97,7 @@ extension ViewController: UICollectionViewDataSource {
             return cell
             
         } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-            cell.backgroundColor = .red
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BestPackagesCell.reuseIdentifier, for: indexPath)
             return cell
         }
     }

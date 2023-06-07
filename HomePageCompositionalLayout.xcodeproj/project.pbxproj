@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B3274462A306CF3006145DF /* BestPackagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3274452A306CF3006145DF /* BestPackagesCell.swift */; };
 		7B9810FA2A24BB490082CD3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9810F92A24BB490082CD3B /* AppDelegate.swift */; };
 		7B9810FE2A24BB490082CD3B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9810FD2A24BB490082CD3B /* ViewController.swift */; };
 		7B9811032A24BB4A0082CD3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B9811022A24BB4A0082CD3B /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7B3274452A306CF3006145DF /* BestPackagesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestPackagesCell.swift; sourceTree = "<group>"; };
 		7B9810F62A24BB490082CD3B /* HomePageCompositionalLayout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomePageCompositionalLayout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B9810F92A24BB490082CD3B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7B9810FD2A24BB490082CD3B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -68,15 +70,16 @@
 		7B9810F82A24BB490082CD3B /* HomePageCompositionalLayout */ = {
 			isa = PBXGroup;
 			children = (
-				7B98111E2A2763120082CD3B /* Fonts */,
-				7B98111D2A2763040082CD3B /* Resources */,
 				7B9810F92A24BB490082CD3B /* AppDelegate.swift */,
 				7B9810FD2A24BB490082CD3B /* ViewController.swift */,
 				7B98110F2A275FCE0082CD3B /* TopRatedFreelancerCell.swift */,
+				7B3274452A306CF3006145DF /* BestPackagesCell.swift */,
 				7B9811112A2760780082CD3B /* MarketPlaceCell.swift */,
 				7B98110D2A2738810082CD3B /* Extensions.swift */,
 				7B9811022A24BB4A0082CD3B /* Assets.xcassets */,
 				7B9811072A24BB4A0082CD3B /* Info.plist */,
+				7B98111E2A2763120082CD3B /* Fonts */,
+				7B98111D2A2763040082CD3B /* Resources */,
 			);
 			path = HomePageCompositionalLayout;
 			sourceTree = "<group>";
@@ -180,6 +183,7 @@
 				7B9811102A275FCE0082CD3B /* TopRatedFreelancerCell.swift in Sources */,
 				7B9811122A2760780082CD3B /* MarketPlaceCell.swift in Sources */,
 				7B98110E2A2738810082CD3B /* Extensions.swift in Sources */,
+				7B3274462A306CF3006145DF /* BestPackagesCell.swift in Sources */,
 				7B9810FA2A24BB490082CD3B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
