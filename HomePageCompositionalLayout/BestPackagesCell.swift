@@ -9,11 +9,13 @@ import UIKit
 
 class BestPackagesCell: UICollectionViewCell {
     
+    // MARK: - Private Properties
     private lazy var containerView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 16
         view.layer.borderWidth = 1
         view.layer.borderColor = UIColor(red: 231/255, green: 231/255, blue: 231/255, alpha: 1).cgColor
+        view.backgroundColor = .white
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -73,7 +75,7 @@ class BestPackagesCell: UICollectionViewCell {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.distribution = .fillProportionally
-        stackView.spacing = 4
+        stackView.spacing = 6
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -176,10 +178,9 @@ class BestPackagesCell: UICollectionViewCell {
     
     private lazy var reviewStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.alignment = .trailing
-        stackView.spacing = 6.5
-        stackView.distribution = .fill
+        stackView.distribution = .equalCentering
         stackView.axis = .horizontal
+        stackView.spacing = 6.5
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -188,6 +189,7 @@ class BestPackagesCell: UICollectionViewCell {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.distribution = .equalSpacing
         return stackView
     }()
     
@@ -229,12 +231,9 @@ class BestPackagesCell: UICollectionViewCell {
         return stackView
     }()
     
-    
     // MARK: - Initializing View
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        backgroundColor = .systemBackground
         
         addSubviewsToSuperview()
         setConstraints()
@@ -245,7 +244,7 @@ class BestPackagesCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
+    // MARK: = Cell ReuseIdentifier
     static var reuseIdentifier: String {
         return String(describing: self)
     }
@@ -313,51 +312,3 @@ extension BestPackagesCell {
     }
 }
 
-
-extension UIView {
-    
-    @discardableResult
-    func alignAllEdgesToSuperview(_ parentView: UIView) -> [NSLayoutConstraint] {
-        
-        let constraints: [NSLayoutConstraint]?
-        
-        translatesAutoresizingMaskIntoConstraints = false
-        
-        constraints = [
-            topAnchor.constraint(equalTo: parentView.topAnchor),
-            trailingAnchor.constraint(equalTo: parentView.trailingAnchor),
-            bottomAnchor.constraint(equalTo: parentView.bottomAnchor),
-            leadingAnchor.constraint(equalTo: parentView.leadingAnchor)
-        ]
-        
-        guard let constraints else { return [] }
-        
-        NSLayoutConstraint.activate(constraints)
-        
-        return constraints
-    }
-    
-    func alignAllEdgesToSuperviewWithPadding(_ parentView: UIView, padding: CGFloat) {
-        
-        let constraints: [NSLayoutConstraint]
-        
-        translatesAutoresizingMaskIntoConstraints = false
-        
-        constraints = [
-            topAnchor.constraint(equalTo: parentView.topAnchor, constant: padding),
-            trailingAnchor.constraint(equalTo: parentView.trailingAnchor, constant: -(padding)),
-            bottomAnchor.constraint(equalTo: parentView.bottomAnchor, constant: -(padding)),
-            leadingAnchor.constraint(equalTo: parentView.leadingAnchor, constant: padding)
-        ]
-        
-        NSLayoutConstraint.activate(constraints)
-    }
-    
-    func setSizeConstraints(width: CGFloat, height: CGFloat) {
-        
-        NSLayoutConstraint.activate([
-            widthAnchor.constraint(equalToConstant: width),
-            heightAnchor.constraint(equalToConstant: height)
-        ])
-    }
-}

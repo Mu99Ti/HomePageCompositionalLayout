@@ -18,7 +18,10 @@ class ViewController: UIViewController {
         collectionView.register(MarketPlaceCell.self, forCellWithReuseIdentifier: MarketPlaceCell.reuseIdentifier)
         collectionView.register(TopRatedFreelancerCell.self, forCellWithReuseIdentifier: TopRatedFreelancerCell.reuseIdentifier)
         collectionView.register(BestPackagesCell.self, forCellWithReuseIdentifier: BestPackagesCell.reuseIdentifier)
-        collectionView.backgroundColor = .systemBackground
+        collectionView.register(HomePageHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HomePageHeader.reuseIdentifier)
+        collectionView.register(MarketPlaceHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MarketPlaceHeader.reuseIdentifier)
+        collectionView.register(BestPackagesHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: BestPackagesHeader.reuseIdentifier)
+        collectionView.backgroundColor = UIColor(red: 247/255, green: 248/255, blue: 250/255, alpha: 1)
         return collectionView
     }()
     
@@ -30,17 +33,18 @@ class ViewController: UIViewController {
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
         ])
         
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = UIColor(red: 247/255, green: 248/255, blue: 250/255, alpha: 1)
     }
     
     private func makeLayout() -> UICollectionViewCompositionalLayout{
         
+        let headerPadding: CGFloat = 16
         let configuration = UICollectionViewCompositionalLayoutConfiguration()
-        configuration.interSectionSpacing = 72
+        configuration.interSectionSpacing = 28
         
         let sectionProvider = { [weak self] (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
             
@@ -50,18 +54,26 @@ class ViewController: UIViewController {
                 let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(144), heightDimension: .absolute(180))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: itemSize, subitems: [item])
+                let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(32 + headerPadding))
+                let topRatedSectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+                topRatedSectionHeader.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: headerPadding, trailing: 0)
                 section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = 12
                 section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20)
+                section.boundarySupplementaryItems = [topRatedSectionHeader]
                 section.orthogonalScrollingBehavior = .continuous
                 
             } else if sectionIndex == 1 {
                 let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(317), heightDimension: .absolute(160))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: itemSize, subitems: [item])
+                let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(32 + headerPadding))
+                let topRatedSectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+                topRatedSectionHeader.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: headerPadding, trailing: 0)
                 section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = 12
                 section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20)
+                section.boundarySupplementaryItems = [topRatedSectionHeader]
                 section.orthogonalScrollingBehavior = .continuous
                 
             } else {
@@ -71,6 +83,10 @@ class ViewController: UIViewController {
                 section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = 12
                 section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20)
+                let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(32 + headerPadding))
+                let topRatedSectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+                topRatedSectionHeader.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: headerPadding, trailing: 0)
+                section.boundarySupplementaryItems = [topRatedSectionHeader]
                 section.orthogonalScrollingBehavior = .continuous
             }
             
@@ -99,6 +115,24 @@ extension ViewController: UICollectionViewDataSource {
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BestPackagesCell.reuseIdentifier, for: indexPath)
             return cell
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        let sectionNumber = indexPath.section
+        
+        if sectionNumber == 0 {
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MarketPlaceHeader.reuseIdentifier, for: indexPath)
+            return header
+            
+        } else if sectionNumber == 1 {
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HomePageHeader.reuseIdentifier, for: indexPath)
+            return header
+            
+        } else {
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: BestPackagesHeader.reuseIdentifier, for: indexPath)
+            return header
         }
     }
 }

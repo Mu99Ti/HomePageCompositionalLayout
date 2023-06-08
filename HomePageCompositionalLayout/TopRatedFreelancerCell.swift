@@ -20,24 +20,26 @@ class TopRatedFreelancerCell: UICollectionViewCell {
     
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "testtsttsts"
+        label.text = "Alexander Havier"
         label.font = UIFont(name: "Outfit-SemiBold", size: 14)
         return label
     }()
     
     private lazy var completedLabel: UILabel = {
         let label = UILabel()
-        label.text = "testtsttsts"
+        label.text = "15 Complete Package"
         label.font = UIFont(name: "Outfit Regular", size: 12)
+        label.textColor = UIColor(red: 5/255, green: 149/255, blue: 16/255, alpha: 1)
+        label.textAlignment = .left
         return label
     }()
     
     private lazy var labelsStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.spacing = 4
-        stackView.distribution = .fillEqually
+        stackView.axis = .horizontal
+        stackView.spacing = 53
+        stackView.distribution = .fill
         return stackView
     }()
     
@@ -49,27 +51,29 @@ class TopRatedFreelancerCell: UICollectionViewCell {
     
     private lazy var informationStackView: UIStackView = {
         let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 4
+        stackView.distribution = .fill
+//        stackView.alignment = .leading
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal
-        stackView.spacing = 12
-        stackView.distribution = .fillProportionally
         return stackView
     }()
     
     private lazy var dateLabel: UILabel = {
         let label = UILabel()
-        label.text = "testtsttsts"
-        label.textAlignment = .right
+        label.text = "Jul 10,2022"
+        label.textAlignment = .left
         label.font = UIFont(name: "Outfit Regular", size: 12)
+        label.textColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1)
         return label
     }()
     
     private lazy var freelancerCellHeaderStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
-        stackView.distribution = .fillProportionally
-        stackView.alignment = .leading
-        stackView.spacing = 53
+//        stackView.distribution = .fillProportionally
+        stackView.alignment = .center
+        stackView.spacing = 12
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -83,8 +87,9 @@ class TopRatedFreelancerCell: UICollectionViewCell {
     
     private lazy var packagesLabel: UILabel = {
         let label = UILabel()
-        label.text = "testtsttsts"
+        label.text = "3 Packages"
         label.font = UIFont(name: "Outfit Regular", size: 12)
+        label.textColor = UIColor(red: 127/255, green: 128/255, blue: 128/255, alpha: 1)
         return label
     }()
     
@@ -106,8 +111,9 @@ class TopRatedFreelancerCell: UICollectionViewCell {
     
     private lazy var servicesLabel: UILabel = {
         let label = UILabel()
-        label.text = "testtsttsts"
+        label.text = "3 Service"
         label.font = UIFont(name: "Outfit Regular", size: 12)
+        label.textColor = UIColor(red: 127/255, green: 128/255, blue: 128/255, alpha: 1)
         label.textAlignment = .right
         return label
     }()
@@ -115,7 +121,7 @@ class TopRatedFreelancerCell: UICollectionViewCell {
     private lazy var servicesStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.distribution = .equalCentering
-        stackView.alignment = .trailing
+        stackView.axis = .horizontal
         stackView.spacing = 6.5
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
@@ -132,8 +138,10 @@ class TopRatedFreelancerCell: UICollectionViewCell {
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 2
-        label.text = "fjdsfnsdklnflksdnflksndflknsldkfsdlknfdsfnsdklnflksdnflksndflknsldkfsdlknfdsfnsdklnflksdnflksndflknsldkfsdlknf"
+        label.text = "Do wireframe for web , website , and mobile app ui ux design Describe your top skills , strengths , and..."
         label.font = UIFont(name: "Outfit Regular", size: 12)
+        label.textColor = UIColor(red: 127/255, green: 128/255, blue: 128/255, alpha: 1)
+        label.textAlignment = .justified
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -160,13 +168,13 @@ class TopRatedFreelancerCell: UICollectionViewCell {
         super.init(frame: frame)
         
         labelsStackView.addArrangedSubview(nameLabel)
-        labelsStackView.addArrangedSubview(completedLabel)
+        labelsStackView.addArrangedSubview(dateLabel)
         
-        informationStackView.addArrangedSubview(freelancerImageView)
         informationStackView.addArrangedSubview(labelsStackView)
+        informationStackView.addArrangedSubview(completedLabel)
         
+        freelancerCellHeaderStackView.addArrangedSubview(freelancerImageView)
         freelancerCellHeaderStackView.addArrangedSubview(informationStackView)
-        freelancerCellHeaderStackView.addArrangedSubview(dateLabel)
         
         packagesStackView.addArrangedSubview(packagesImageView)
         packagesStackView.addArrangedSubview(packagesLabel)
@@ -242,6 +250,7 @@ class TopRatedFreelancerCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: = Cell ReuseIdentifier
     static var reuseIdentifier: String {
         return String.init(describing: self.self)
     }

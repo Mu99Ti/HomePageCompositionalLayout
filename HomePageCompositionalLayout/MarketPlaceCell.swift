@@ -9,17 +9,17 @@ import UIKit
 
 class MarketPlaceCell: UICollectionViewCell {
     
-    static var reuseIdentifier: String {
-        return String.init(describing: self.self)
-    }
     
+    // MARK: - Private Properties
     private lazy var marketPlaceContainerView: UIView = {
         let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .clear
         return view
     }()
     
     private lazy var marketPlaceImageView: UIImageView = {
-        let image = UIImage(named: "")
+        let image = UIImage(named: "bitmap")
         let imageView = UIImageView(image: image)
         return imageView
     }()
@@ -27,42 +27,53 @@ class MarketPlaceCell: UICollectionViewCell {
     private lazy var marketPlaceLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Outfit-SemiBold", size: 14)
+        label.text = "Logo Design"
         label.textColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
+    // MARK: - Initializing View
     override init(frame: CGRect) {
         super.init(frame: frame)
+    
+        addSubviewsToSuperview()
         
-        marketPlaceImageView.addSubview(marketPlaceLabel)
-        marketPlaceContainerView.addSubview(marketPlaceImageView)
-        
-        addSubview(marketPlaceContainerView)
-        
-        NSLayoutConstraint.activate([
-            marketPlaceImageView.topAnchor.constraint(equalTo: marketPlaceContainerView.topAnchor),
-            marketPlaceImageView.trailingAnchor.constraint(equalTo: marketPlaceContainerView.trailingAnchor),
-            marketPlaceImageView.bottomAnchor.constraint(equalTo: marketPlaceContainerView.bottomAnchor),
-            marketPlaceImageView.leadingAnchor.constraint(equalTo: marketPlaceContainerView.leadingAnchor)
-        ])
-        
-        NSLayoutConstraint.activate([
-            marketPlaceLabel.bottomAnchor.constraint(equalTo: marketPlaceImageView.bottomAnchor),
-            marketPlaceLabel.trailingAnchor.constraint(equalTo: marketPlaceImageView.trailingAnchor, constant: -32.5),
-            marketPlaceLabel.leadingAnchor.constraint(equalTo: marketPlaceImageView.leadingAnchor, constant: 32.5),
-            marketPlaceLabel.heightAnchor.constraint(equalToConstant: 21)
-        ])
-        
+        setConstraints()
+  
         layer.cornerRadius = 16
-        backgroundColor = .cyan
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configure() {
-        layer.cornerRadius = 16
+    // MARK: = Cell ReuseIdentifier
+    static var reuseIdentifier: String {
+        return String.init(describing: self.self)
+    }
+}
+
+extension MarketPlaceCell {
+    
+    private func addSubviewsToSuperview() {
+        
+        addSubview(marketPlaceContainerView)
+        
+        marketPlaceContainerView.addSubview(marketPlaceImageView)
+        marketPlaceImageView.addSubview(marketPlaceLabel)
     }
     
+    private func setConstraints() {
+        
+        marketPlaceImageView.alignAllEdgesToSuperview(marketPlaceContainerView)
+        
+        marketPlaceImageView.setSizeConstraints(width: 144, height: 180)
+        
+        NSLayoutConstraint.activate([
+            marketPlaceLabel.bottomAnchor.constraint(equalTo: marketPlaceImageView.bottomAnchor, constant: -16),
+            marketPlaceLabel.trailingAnchor.constraint(equalTo: marketPlaceImageView.trailingAnchor, constant: -32.5),
+            marketPlaceLabel.leadingAnchor.constraint(equalTo: marketPlaceImageView.leadingAnchor, constant: 32.5),
+        ])
+    }
 }
