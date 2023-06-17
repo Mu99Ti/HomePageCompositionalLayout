@@ -9,21 +9,21 @@ import UIKit
 
 class BestPackagesHeader: UICollectionReusableView {
     
-    private lazy var topRatedFreelancerHeaderLabel: UILabel = {
+    private lazy var bestPackagesHeaderLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Outfit-Bold", size: 16)
+        label.font = UIFont(name: "Outfit Bold", size: 16)!
         label.text = "Explore Best Packages"
         return label
     }()
     
-    private lazy var topRatedFreelancerHeaderButton: UIButton = {
+    private lazy var bestPackagesHeaderButton: UIButton = {
         let button = UIButton()
         button.layer.cornerRadius = 8
         button.backgroundColor = .white
         return button
     }()
     
-    private lazy var topRatedFreelancerHeaderButtonImageView: UIImageView = {
+    private lazy var bestPackagesHeaderButtonImageView: UIImageView = {
         let image = UIImage(named: "Path")
         let imageView = UIImageView(image: image)
         return imageView
@@ -54,12 +54,6 @@ class BestPackagesHeader: UICollectionReusableView {
     static var reuseIdentifier: String {
         return String(describing: self)
     }
-    
-    convenience init(headerLabel: String) {
-        self.init(frame: .zero)
-        
-        topRatedFreelancerHeaderLabel.text = headerLabel
-    }
 }
 
 extension BestPackagesHeader {
@@ -68,23 +62,23 @@ extension BestPackagesHeader {
         
         addSubview(mainStackView)
         
-        mainStackView.addArrangedSubview(topRatedFreelancerHeaderLabel)
-        mainStackView.addArrangedSubview(topRatedFreelancerHeaderButton)
+        mainStackView.addArrangedSubview(bestPackagesHeaderLabel)
+        mainStackView.addArrangedSubview(bestPackagesHeaderButton)
         
-        topRatedFreelancerHeaderButton.addSubview(topRatedFreelancerHeaderButtonImageView)
+        bestPackagesHeaderButton.addSubview(bestPackagesHeaderButtonImageView)
     }
     
     private func setConstraints() {
         
         mainStackView.alignAllEdgesToSuperview(self)
         
-        topRatedFreelancerHeaderButtonImageView.setSizeConstraints(width: 4, height: 8)
+        bestPackagesHeaderButtonImageView.setSizeConstraints(width: 4, height: 8)
         NSLayoutConstraint.activate([
-            topRatedFreelancerHeaderButtonImageView.centerXAnchor.constraint(equalTo: topRatedFreelancerHeaderButton.centerXAnchor),
-            topRatedFreelancerHeaderButtonImageView.centerYAnchor.constraint(equalTo: topRatedFreelancerHeaderButton.centerYAnchor)
+            bestPackagesHeaderButtonImageView.centerXAnchor.constraint(equalTo: bestPackagesHeaderButton.centerXAnchor),
+            bestPackagesHeaderButtonImageView.centerYAnchor.constraint(equalTo: bestPackagesHeaderButton.centerYAnchor)
         ])
         
-        topRatedFreelancerHeaderButton.setSizeConstraints(width: 32, height: 32)
+        bestPackagesHeaderButton.setSizeConstraints(width: 32, height: 32)
     }
 }
 

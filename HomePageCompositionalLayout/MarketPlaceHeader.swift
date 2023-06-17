@@ -9,21 +9,21 @@ import UIKit
 
 class MarketPlaceHeader: UICollectionReusableView {
     
-    private lazy var topRatedFreelancerHeaderLabel: UILabel = {
+    private lazy var marketPlaceHeaderLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Outfit-Bold", size: 16)
         label.text = "Explore Marketplace"
         return label
     }()
     
-    private lazy var topRatedFreelancerHeaderButton: UIButton = {
+    private lazy var marketPlaceHeaderButton: UIButton = {
         let button = UIButton()
         button.layer.cornerRadius = 8
         button.backgroundColor = .white
         return button
     }()
     
-    private lazy var topRatedFreelancerHeaderButtonImageView: UIImageView = {
+    private lazy var marketPlaceHeaderButtonImageView: UIImageView = {
         let image = UIImage(named: "Path")
         let imageView = UIImageView(image: image)
         return imageView
@@ -58,7 +58,7 @@ class MarketPlaceHeader: UICollectionReusableView {
     convenience init(headerLabel: String) {
         self.init(frame: .zero)
         
-        topRatedFreelancerHeaderLabel.text = headerLabel
+        marketPlaceHeaderLabel.text = headerLabel
     }
 }
 
@@ -68,23 +68,23 @@ extension MarketPlaceHeader {
         
         addSubview(mainStackView)
         
-        mainStackView.addArrangedSubview(topRatedFreelancerHeaderLabel)
-        mainStackView.addArrangedSubview(topRatedFreelancerHeaderButton)
+        mainStackView.addArrangedSubview(marketPlaceHeaderLabel)
+        mainStackView.addArrangedSubview(marketPlaceHeaderButton)
         
-        topRatedFreelancerHeaderButton.addSubview(topRatedFreelancerHeaderButtonImageView)
+        marketPlaceHeaderButton.addSubview(marketPlaceHeaderButtonImageView)
     }
     
     private func setConstraints() {
         
         mainStackView.alignAllEdgesToSuperview(self)
         
-        topRatedFreelancerHeaderButtonImageView.setSizeConstraints(width: 4, height: 8)
+        marketPlaceHeaderButtonImageView.setSizeConstraints(width: 4, height: 8)
         NSLayoutConstraint.activate([
-            topRatedFreelancerHeaderButtonImageView.centerXAnchor.constraint(equalTo: topRatedFreelancerHeaderButton.centerXAnchor),
-            topRatedFreelancerHeaderButtonImageView.centerYAnchor.constraint(equalTo: topRatedFreelancerHeaderButton.centerYAnchor)
+            marketPlaceHeaderButtonImageView.centerXAnchor.constraint(equalTo: marketPlaceHeaderButton.centerXAnchor),
+            marketPlaceHeaderButtonImageView.centerYAnchor.constraint(equalTo: marketPlaceHeaderButton.centerYAnchor)
         ])
         
-        topRatedFreelancerHeaderButton.setSizeConstraints(width: 32, height: 32)
+        marketPlaceHeaderButton.setSizeConstraints(width: 32, height: 32)
     }
 }
 

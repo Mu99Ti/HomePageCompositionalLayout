@@ -250,6 +250,11 @@ class TopRatedFreelancerCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    internal func configure(title: String, imageURL: URL ) {
+        
+        
+    }
+    
     // MARK: = Cell ReuseIdentifier
     static var reuseIdentifier: String {
         return String.init(describing: self.self)

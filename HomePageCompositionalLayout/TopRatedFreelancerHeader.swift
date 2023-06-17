@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomePageHeader: UICollectionReusableView {
+class TopRatedFreelancerHeader: UICollectionReusableView {
     
     private lazy var topRatedFreelancerHeaderLabel: UILabel = {
         let label = UILabel()
@@ -62,7 +62,7 @@ class HomePageHeader: UICollectionReusableView {
     }
 }
 
-extension HomePageHeader {
+extension TopRatedFreelancerHeader {
     
     private func addSubviewsToSuperview() {
         

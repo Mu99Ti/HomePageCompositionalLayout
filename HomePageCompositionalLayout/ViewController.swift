@@ -9,6 +9,14 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    private var dataSet: Model? {
+        didSet {
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
+    }
+    
     private lazy var collectionView: UICollectionView = {
         let layout = makeLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -18,7 +26,7 @@ class ViewController: UIViewController {
         collectionView.register(MarketPlaceCell.self, forCellWithReuseIdentifier: MarketPlaceCell.reuseIdentifier)
         collectionView.register(TopRatedFreelancerCell.self, forCellWithReuseIdentifier: TopRatedFreelancerCell.reuseIdentifier)
         collectionView.register(BestPackagesCell.self, forCellWithReuseIdentifier: BestPackagesCell.reuseIdentifier)
-        collectionView.register(HomePageHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HomePageHeader.reuseIdentifier)
+        collectionView.register(TopRatedFreelancerHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: TopRatedFreelancerHeader.reuseIdentifier)
         collectionView.register(MarketPlaceHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MarketPlaceHeader.reuseIdentifier)
         collectionView.register(BestPackagesHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: BestPackagesHeader.reuseIdentifier)
         collectionView.backgroundColor = UIColor(red: 247/255, green: 248/255, blue: 250/255, alpha: 1)
@@ -34,10 +42,36 @@ class ViewController: UIViewController {
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
         ])
         
         view.backgroundColor = UIColor(red: 247/255, green: 248/255, blue: 250/255, alpha: 1)
+        
+        fetchData()
+    
+    }
+    
+    
+    private func fetchData() {
+        
+        let url = URL(string: "https://api.dev.qudra.cloud/home-page/5")
+        
+        guard let url else { return }
+        let urlRequest = URLRequest(url: url)
+        
+        let urlSession = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
+            
+            if let data {
+                do {
+                    let decoded = try JSONDecoder().decode(Model.self, from: data)
+                    self.dataSet = decoded
+                    print("decoded.payload.categories.count: ", decoded.payload.categories.count)
+                    print("dataset number is: \(self.dataSet)")
+                } catch {
+                    print("error is:", String(describing: error))
+                }
+            }
+        }.resume()
     }
     
     private func makeLayout() -> UICollectionViewCompositionalLayout{
@@ -105,14 +139,17 @@ extension ViewController: UICollectionViewDataSource {
         let sectionNumber = indexPath.section
         
         if sectionNumber == 0 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MarketPlaceCell.reuseIdentifier, for: indexPath)
-            return cell
             
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MarketPlaceCell.reuseIdentifier, for: indexPath) as! MarketPlaceCell
+            print("dataset is: \(dataSet?.payload)")
+//            cell.configure(title: categoriesDataSet?.title)
+            return cell
         } else if sectionNumber == 1 {
+            
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopRatedFreelancerCell.reuseIdentifier, for: indexPath)
             return cell
-            
         } else {
+            
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BestPackagesCell.reuseIdentifier, for: indexPath)
             return cell
         }
@@ -127,7 +164,7 @@ extension ViewController: UICollectionViewDataSource {
             return header
             
         } else if sectionNumber == 1 {
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HomePageHeader.reuseIdentifier, for: indexPath)
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: TopRatedFreelancerHeader.reuseIdentifier, for: indexPath)
             return header
             
         } else {
@@ -142,7 +179,17 @@ extension ViewController: UICollectionViewDelegate {
         3
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        10
+        
+        switch section {
+        case 0:
+            return (dataSet?.payload.categories.count)!
+        case 1:
+            return (dataSet?.payload.topFreelancers.count)!
+        case 2:
+            return (dataSet?.payload.topPackages.count)!
+        default:
+            return 10
+        }
     }
 }
 

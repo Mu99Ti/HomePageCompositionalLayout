@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Kingfisher
 
 extension UIView {
     
@@ -94,5 +94,13 @@ extension UILabel {
         label.font = font
         label.textColor = textColor
         return label
+    }
+}
+
+extension UIImageView {
+    
+    func setImage(url: URL) {
+        
+        self.kf.setImage(with: url)
     }
 }

@@ -27,7 +27,7 @@ class MarketPlaceCell: UICollectionViewCell {
     private lazy var marketPlaceLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Outfit-SemiBold", size: 14)
-        label.text = "Logo Design"
+//        label.text = "Logo Design"
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -36,11 +36,11 @@ class MarketPlaceCell: UICollectionViewCell {
     // MARK: - Initializing View
     override init(frame: CGRect) {
         super.init(frame: frame)
-    
+        
         addSubviewsToSuperview()
         
         setConstraints()
-  
+        
         layer.cornerRadius = 16
     }
     
@@ -51,6 +51,17 @@ class MarketPlaceCell: UICollectionViewCell {
     // MARK: = Cell ReuseIdentifier
     static var reuseIdentifier: String {
         return String.init(describing: self.self)
+    }
+    
+    internal func configure(title: String?) {
+        
+            marketPlaceLabel.text = title
+    }
+    
+    internal func configure(title: String?, imageURL: String?) {
+        
+            marketPlaceLabel.text = title
+        marketPlaceImageView.setImage(url: URL(string: imageURL!)!)
     }
 }
 
